@@ -57,158 +57,65 @@ recognizes a custom uploaded image:</p>
 
 <p><img src="image006.jpg"></p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>The result is quite ok, the detected
-class actually corresponds with number 6.<o:p></o:p></span></p>
+<p>The result is quite ok, the detected
+class actually corresponds with number 6.</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>Now we have a reasonably trained
-model&#8202;&#8202;lets try to build a generator network for creating images.<o:p></o:p></span></p>
+<p>Now we have a reasonably trained
+model, let's try to build a generator network for creating images.</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>For this <span class=GramE>example</span>
+<p>For this example
 the network layout copies the generative part of the above referenced GAN
-model.<o:p></o:p></span></p>
+model.</p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
- id="Picture_x0020_6" o:spid="_x0000_i1030" type="#_x0000_t75" alt="https://cdn-images-1.medium.com/max/1000/1*rXesU7khKAm488v4a1-Gvg.png"
- style='width:7in;height:303pt;visibility:visible;mso-wrap-style:square'>
- <v:imagedata src="Reverse%20Inference_files/image007.png" o:title="1*rXesU7khKAm488v4a1-Gvg"/>
-</v:shape><![endif]--><![if !vml]><img border=0 width=672 height=404
-src="Reverse%20Inference_files/image008.jpg"
-alt="https://cdn-images-1.medium.com/max/1000/1*rXesU7khKAm488v4a1-Gvg.png"
-v:shapes="Picture_x0020_6"><![endif]></span><span style='font-size:12.0pt;
-font-family:"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+<p><img src="image008.jpg"></p>
+ 
+<p> now combine the 2 models together</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>now combine the 2 models together<o:p></o:p></span></p>
+ <p><img src="image009.png"></p>
+ <p>and start the training of the
+generator model (note the discriminator model is set as not-trainable).</p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
- id="Picture_x0020_5" o:spid="_x0000_i1029" type="#_x0000_t75" alt="https://cdn-images-1.medium.com/max/1000/1*9U8FpFtUizFY2WGci6lSgw.png"
- style='width:515.4pt;height:249pt;visibility:visible;mso-wrap-style:square'>
- <v:imagedata src="Reverse%20Inference_files/image009.png" o:title="1*9U8FpFtUizFY2WGci6lSgw"/>
-</v:shape><![endif]--><![if !vml]><img border=0 width=687 height=332
-src="Reverse%20Inference_files/image009.png"
-alt="https://cdn-images-1.medium.com/max/1000/1*9U8FpFtUizFY2WGci6lSgw.png"
-v:shapes="Picture_x0020_5"><![endif]></span><span style='font-size:12.0pt;
-font-family:"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+<p>Here we try to get a result for
+ class 3 (in MNIST model the character '4')</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>and start the training of the
-generator model (note the discriminator model is set as not-trainable).<o:p></o:p></span></p>
+ <p><img src="image011.jpg"></p>
+ 
+<p>Now we can get a generated - just run inference on the latent space vector with the same
+value used for generator model training tr_in = [1,0,0,0,0,...]</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>Here we try to get a result for
-class 3 (in MNIST model the character 4).<o:p></o:p></span></p>
+ <p> <img src = "image013.jpg"></p>
+ <p>The generated image doesn't look
+much like handwritten number '4', so let's try how the MNIST trained model
+recognizes it.</p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
- id="Picture_x0020_4" o:spid="_x0000_i1028" type="#_x0000_t75" alt="https://cdn-images-1.medium.com/max/1000/1*gkuYc78YJmfUN-Mxu1GBRQ.png"
- style='width:493.2pt;height:151.2pt;visibility:visible;mso-wrap-style:square'>
- <v:imagedata src="Reverse%20Inference_files/image010.png" o:title="1*gkuYc78YJmfUN-Mxu1GBRQ"/>
-</v:shape><![endif]--><![if !vml]><img border=0 width=658 height=202
-src="Reverse%20Inference_files/image011.jpg"
-alt="https://cdn-images-1.medium.com/max/1000/1*gkuYc78YJmfUN-Mxu1GBRQ.png"
-v:shapes="Picture_x0020_4"><![endif]></span><span style='font-size:12.0pt;
-font-family:"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+ <p><img src="image015.jpg"></p>
+<p>The detection looks pretty accurate
+though the generated result doesn't resemble images of the dataset at all.</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>Now we can get a generated
-image&#8202;&#8202;just run inference on the latent space vector with the same
-value used for generator model training <span class=SpellE>tr_in</span> =
-[1,0,0,0,0]<o:p></o:p></span></p>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
- id="Picture_x0020_3" o:spid="_x0000_i1027" type="#_x0000_t75" alt="https://cdn-images-1.medium.com/max/1000/1*4paBmL747Cer3J6EZxqaOg.png"
- style='width:507.6pt;height:207pt;visibility:visible;mso-wrap-style:square'>
- <v:imagedata src="Reverse%20Inference_files/image012.png" o:title="1*4paBmL747Cer3J6EZxqaOg"/>
-</v:shape><![endif]--><![if !vml]><img border=0 width=677 height=276
-src="Reverse%20Inference_files/image013.jpg"
-alt="https://cdn-images-1.medium.com/max/1000/1*4paBmL747Cer3J6EZxqaOg.png"
-v:shapes="Picture_x0020_3"><![endif]></span><span style='font-size:12.0pt;
-font-family:"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
-
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>The generated image doesnt look
-much like handwritten number 4', so lets try how the MNIST trained model
-recognizes it.<o:p></o:p></span></p>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
- id="Picture_x0020_2" o:spid="_x0000_i1026" type="#_x0000_t75" alt="https://cdn-images-1.medium.com/max/1000/1*mWPSOTrPr1unXnQGkMGhUg.png"
- style='width:502.8pt;height:117.6pt;visibility:visible;mso-wrap-style:square'>
- <v:imagedata src="Reverse%20Inference_files/image014.png" o:title="1*mWPSOTrPr1unXnQGkMGhUg"/>
-</v:shape><![endif]--><![if !vml]><img border=0 width=670 height=157
-src="Reverse%20Inference_files/image015.jpg"
-alt="https://cdn-images-1.medium.com/max/1000/1*mWPSOTrPr1unXnQGkMGhUg.png"
-v:shapes="Picture_x0020_2"><![endif]></span><span style='font-size:12.0pt;
-font-family:"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
-
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>The detection looks pretty accurate
-though the generated result doesnt resemble images of the dataset at all.<o:p></o:p></span></p>
-
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>Due to random initialization,
+<p>Due to random initialization,
 repeated training and prediction gives different results, all of them passing
-successfully the detection in the discriminator model.<o:p></o:p></span></p>
+successfully the detection in the discriminator model.</p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
- id="Picture_x0020_1" o:spid="_x0000_i1025" type="#_x0000_t75" alt="https://cdn-images-1.medium.com/max/1000/1*2iFCkzR2cLcd3IZbK8G18Q.png"
- style='width:517.2pt;height:175.2pt;visibility:visible;mso-wrap-style:square'>
- <v:imagedata src="Reverse%20Inference_files/image016.png" o:title="1*2iFCkzR2cLcd3IZbK8G18Q"/>
-</v:shape><![endif]--><![if !vml]><img border=0 width=690 height=234
-src="Reverse%20Inference_files/image017.jpg"
-alt="https://cdn-images-1.medium.com/max/1000/1*2iFCkzR2cLcd3IZbK8G18Q.png"
-v:shapes="Picture_x0020_1"><![endif]></span><span style='font-size:12.0pt;
-font-family:"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+<p><src="image017.jpg"></p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>The result above shows the generator
+<p>The result above shows the generator
 training with the backpropagation from the existing trained model can easily
 create input data fitting the trained detection model, however the images are
-not plausible. They generally dont come even close to the training dataset
-images. Thats why the full GAN concept relies on the training dataset to
+not plausible. They generally don't come even close to the training dataset
+images. That's why the full GAN concept relies on the training dataset to
 differentiate between generated images that fit the discriminator model, but
-significantly differ from the expected input.<o:p></o:p></span></p>
+significantly differ from the expected input.</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span class=GramE><span style='font-size:12.0pt;font-family:
-"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'>However</span></span><span
-style='font-size:12.0pt;font-family:"Times New Roman",serif;mso-fareast-font-family:
-"Times New Roman"'> the technique can be easily misused in adversarial attack
+<p>The technique can be easily misused in adversarial attack
 against the model, since the seemingly random noise image would be detected as
-specific class with high confidentiality close to 100%.<o:p></o:p></span></p>
+specific class with high confidentiality close to 100%.</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>The full <span class=SpellE>colab</span>
-notebook can be downloaded here: <a
+<p>The full colab
+notebook can be downloaded here: <a
 href="https://gist.github.com/gogela/974673c9d117962d10fe3a3409099d45"
-target="_blank">https://gist.github.com/gogela/974673c9d117962d10fe3a3409099d45</a><o:p></o:p></span></p>
+target="_blank">https://gist.github.com/gogela/974673c9d117962d10fe3a3409099d45</a></p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
 
 </div>
 
