@@ -28,66 +28,26 @@ when the brain's MRI looks like this?</p>
 trained DNN, what the net sees on its input while I get this particular output?
  </p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>There might be more approaches to
-such DNN reverse engineering. A very convenient method I used is based on GAN
-(Generative Adversarial Network). While GANs primary purpose is to train
+<p>There might be more approaches to
+such DNN 'reverse engineering'. A very convenient method I used is based on GAN
+(Generative Adversarial Network). While GAN's primary purpose is to train
 simultaneously both detector and generator, in our case the detector has been
-fully trained already and the training set in unknown.<o:p></o:p></span></p>
+fully trained already and the training set in unknown.</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>For the following example we train a
+<p>For the following example we train a
 CNN on standard MNIST handwritten digits dataset. For an example of regular GAN
 on the same dataset, see: <a
 href="https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/"
-target="_blank">https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/</a><o:p></o:p></span></p>
+target="_blank">https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/</a></p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>Google <span class=SpellE>colab</span>
-offers a very convenient environment for our experiment&#8202;&#8202;so the
-following code extracts are optimized for it. Lets start with training a CNN
-on the MNIST dataset to crate discriminator model:<o:p></o:p></span></p>
+<p>Google colab offers a very convenient environment for our experiment, so the
+following code extracts are optimized for it. Let's start with training a CNN
+on the MNIST dataset to crate discriminator model:</p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal'><span class=GramE><span style='font-size:12.0pt;font-family:
-"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'>First</span></span><span
-style='font-size:12.0pt;font-family:"Times New Roman",serif;mso-fareast-font-family:
-"Times New Roman"'> we prepare the environment and the training data:<o:p></o:p></span></p>
+<p>First, we prepare the environment and the training data:</p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shapetype
- id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
- path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
- <v:stroke joinstyle="miter"/>
- <v:formulas>
-  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
-  <v:f eqn="sum @0 1 0"/>
-  <v:f eqn="sum 0 0 @1"/>
-  <v:f eqn="prod @2 1 2"/>
-  <v:f eqn="prod @3 21600 pixelWidth"/>
-  <v:f eqn="prod @3 21600 pixelHeight"/>
-  <v:f eqn="sum @0 0 1"/>
-  <v:f eqn="prod @6 1 2"/>
-  <v:f eqn="prod @7 21600 pixelWidth"/>
-  <v:f eqn="sum @8 21600 0"/>
-  <v:f eqn="prod @7 21600 pixelHeight"/>
-  <v:f eqn="sum @10 21600 0"/>
- </v:formulas>
- <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
- <o:lock v:ext="edit" aspectratio="t"/>
-</v:shapetype><v:shape id="Picture_x0020_9" o:spid="_x0000_i1033" type="#_x0000_t75"
- alt="https://cdn-images-1.medium.com/max/1000/1*Bjvn-xYQHQCycXiFUIxr9g.png"
- style='width:504.6pt;height:287.4pt;visibility:visible;mso-wrap-style:square'>
- <v:imagedata src="Reverse%20Inference_files/image001.png" o:title="1*Bjvn-xYQHQCycXiFUIxr9g"/>
-</v:shape><![endif]--><![if !vml]><img border=0 width=673 height=383
-src="Reverse%20Inference_files/image002.jpg"
-alt="https://cdn-images-1.medium.com/max/1000/1*Bjvn-xYQHQCycXiFUIxr9g.png"
-v:shapes="Picture_x0020_9"><![endif]></span><span style='font-size:12.0pt;
-font-family:"Times New Roman",serif;mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+<p>
+ <img src="image002.jpg"</p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
